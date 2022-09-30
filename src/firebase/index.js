@@ -5,6 +5,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -23,6 +27,9 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+const provider = new GoogleAuthProvider();
+const gitProvider = new GithubAuthProvider();
+
 export {
   app,
   auth,
@@ -30,4 +37,10 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  provider,
+  GithubAuthProvider,
+  gitProvider,
 };
