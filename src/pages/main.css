@@ -87,3 +87,28 @@
 .not-member:hover{
     cursor: pointer;
 }
+
+.home-container{
+    background-color: #393E46;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.user-email{
+    color: #fff
+}
+
+.logout-button{
+    width: 100px;
+    height: 30px;
+    border-width: 0;
+    background-color: tomato;
+    color: #fff;
+    font-size: 15px;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}

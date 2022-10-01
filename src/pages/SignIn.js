@@ -86,6 +86,22 @@ export default function SignIn({ setIsMember, isMember }) {
   };
 
   const forgetPassword = () => {
+    if (!email) {
+      alert("Please enter your email");
+    } else {
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          // Password reset email sent!
+          // ..
+          alert("Link to reset the password has been sent to  your email id");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          alert(errorMessage);
+        });
+    }
     sendPasswordResetEmail(auth, email)
       .then(() => {
         // Password reset email sent!
