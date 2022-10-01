@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn";
 import { auth, onAuthStateChanged } from "./firebase/index";
 import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp";
+import InputPage from "./pages/InputPage";
 
 function App() {
   const [isUser, setIsUser] = useState(false);
@@ -19,7 +20,7 @@ function App() {
     });
   }, []);
 
-  return <div className="App">{isUser ? <HomePage /> : <SignIn />}</div>;
+  return <div className="App">{isUser ? <HomePage /> : <InputPage />}</div>;
 }
 
 export default App;

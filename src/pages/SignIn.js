@@ -10,9 +10,10 @@ import {
   GithubAuthProvider,
   gitProvider,
   signOut,
+  sendPasswordResetEmail,
 } from "../firebase/index";
 
-export default function SignIn() {
+export default function SignIn({ setIsMember, isMember }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -83,6 +84,19 @@ export default function SignIn() {
         // ...
       });
   };
+
+  const forgetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
   return (
     <div className="signin-container">
       <div className="input-container">
@@ -104,6 +118,9 @@ export default function SignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <span className="not-member" onClick={forgetPassword}>
+          Forget password
+        </span>
         <input
           type="submit"
           value="Sign In"
@@ -119,7 +136,9 @@ export default function SignIn() {
           </div>
         </div>
 
-        <span className="not-member">Not a member?</span>
+        <span className="not-member" onClick={() => setIsMember(false)}>
+          Not a member?
+        </span>
       </div>
     </div>
   );

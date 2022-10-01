@@ -10,6 +10,7 @@ import {
   signInWithPopup,
   GithubAuthProvider,
   sendEmailVerification,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -45,4 +46,5 @@ export {
   GithubAuthProvider,
   gitProvider,
   sendEmailVerification,
+  sendPasswordResetEmail,
 };

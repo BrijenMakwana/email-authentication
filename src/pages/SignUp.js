@@ -8,7 +8,7 @@ import {
   signOut,
 } from "../firebase/index";
 
-export default function SignUp() {
+export default function SignUp({ setIsMember, isMember }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -64,6 +64,9 @@ export default function SignUp() {
           className="button"
           onClick={signUp}
         />
+        <span className="not-member" onClick={() => setIsMember(true)}>
+          Back to Sign In
+        </span>
       </div>
     </div>
   );
