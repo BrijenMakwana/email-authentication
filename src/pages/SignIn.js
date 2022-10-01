@@ -17,11 +17,14 @@ export default function SignIn({ setIsMember, isMember }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // sign in
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+
+        // only verified user can login
         if (!user.emailVerified) {
           alert("Please verify your email in order to login");
           signOut(auth)
@@ -40,6 +43,7 @@ export default function SignIn({ setIsMember, isMember }) {
       });
   };
 
+  // sign in with google
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -62,6 +66,7 @@ export default function SignIn({ setIsMember, isMember }) {
       });
   };
 
+  // sign in with github
   const signInWithGitHub = () => {
     signInWithPopup(auth, gitProvider)
       .then((result) => {
@@ -85,6 +90,7 @@ export default function SignIn({ setIsMember, isMember }) {
       });
   };
 
+  // password reset
   const forgetPassword = () => {
     if (!email) {
       alert("Please enter your email");
@@ -102,16 +108,6 @@ export default function SignIn({ setIsMember, isMember }) {
           alert(errorMessage);
         });
     }
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        // Password reset email sent!
-        // ..
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
   };
   return (
     <div className="signin-container">
@@ -134,15 +130,20 @@ export default function SignIn({ setIsMember, isMember }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {/* forget password */}
         <span className="not-member" onClick={forgetPassword}>
           Forget password
         </span>
+
+        {/* sign in */}
         <input
           type="submit"
           value="Sign In"
           className="button"
           onClick={signIn}
         />
+
+        {/* sign in with different providers */}
         <div className="icon-button-container">
           <div type="submit" className="icon-button" onClick={signInWithGoogle}>
             Sign in with <AiFillGoogleCircle color="#000" size="25px" />
@@ -152,6 +153,7 @@ export default function SignIn({ setIsMember, isMember }) {
           </div>
         </div>
 
+        {/* sign up page */}
         <span className="not-member" onClick={() => setIsMember(false)}>
           Not a member?
         </span>

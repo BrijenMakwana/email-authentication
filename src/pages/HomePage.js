@@ -5,6 +5,8 @@ import "./main.css";
 export default function HomePage() {
   const [email, setEmail] = useState("");
 
+  // check if any user logged in
+
   useEffect(() => {
     const user = auth.currentUser;
 
@@ -15,6 +17,7 @@ export default function HomePage() {
     }
   }, []);
 
+  // log out
   const logOut = () => {
     signOut(auth)
       .then(() => {

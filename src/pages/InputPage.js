@@ -6,6 +6,7 @@ export default function InputPage() {
   const [isMember, setIsMember] = useState(true);
   return (
     <>
+      {/* render SignIn or SignUp page based on condition */}
       {isMember ? (
         <SignIn setIsMember={setIsMember} isMember={isMember} />
       ) : (
