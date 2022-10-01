@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SignIn from "./pages/SignIn";
 import { auth, onAuthStateChanged } from "./firebase/index";
 import HomePage from "./pages/HomePage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const [isUser, setIsUser] = useState(false);

@@ -9,6 +9,7 @@ import {
   provider,
   GithubAuthProvider,
   gitProvider,
+  signOut,
 } from "../firebase/index";
 
 export default function SignIn() {
@@ -20,6 +21,16 @@ export default function SignIn() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        if (!user.emailVerified) {
+          alert("Please verify your email in order to login");
+          signOut(auth)
+            .then(() => {
+              // Sign-out successful.
+            })
+            .catch((error) => {
+              // An error happened.
+            });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;

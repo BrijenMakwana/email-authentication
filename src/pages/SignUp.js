@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./main.css";
 
-import { auth, createUserWithEmailAndPassword } from "../firebase/index";
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
+} from "../firebase/index";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -12,11 +17,25 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+
+        sendEmailVerification(auth.currentUser).then(() => {
+          // Email verification sent!
+          // ...
+          alert("email sent");
+        });
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+          })
+          .catch((error) => {
+            // An error happened.
+          });
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage);
         // ..
       });
   };
